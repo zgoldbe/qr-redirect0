@@ -1,25 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>QR Redirect</title>
-  <script>
-    window.onload = function() {
-      const params = new URLSearchParams(window.location.search);
-      const qr = params.get('qr');
-      if (qr) {
-        document.body.innerHTML = `
-          <h2>You scanned QR code: <strong>${qr}</strong></h2>
-          <a href="https://your-link1.com?qr=${qr}" style="padding: 12px 24px; background: #007bff; color: white; border-radius: 5px; display: inline-block; margin: 10px;">Option 1</a>
-          <a href="https://your-link2.com?qr=${qr}" style="padding: 12px 24px; background: #333; color: white; border-radius: 5px; display: inline-block; margin: 10px;">Option 2</a>
-        `;
-      } else {
-        document.body.innerHTML = "<h2>No QR code provided.</h2>";
-      }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code Landing Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 0;
+      background-color: #f9f9f9;
     }
-  </script>
+
+    header {
+      background-color: #003865;
+      color: white;
+      padding: 1rem 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    main {
+      margin: 60px auto;
+      padding: 0 20px;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: #444;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      padding: 15px;
+      margin: 10px auto;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn.secondary {
+      background-color: black;
+      color: white;
+    }
+
+    .or {
+      font-weight: bold;
+      margin: 20px 0;
+    }
+  </style>
 </head>
 <body>
-  <h2>Loading QR code data...</h2>
+
+  <header>
+    City of Toronto Facility Access
+  </header>
+
+  <main>
+    <h1>You've scanned QR Code #<span id="qr-value">...</span></h1>
+    <p>Click on one of the buttons below to continue</p>
+
+    <a id="staff-button" class="btn primary">I'm a City of Toronto staff member, let me in</a>
+
+    <div class="or">OR</div>
+
+    <a id="guest-button" class="btn secondary">Continue as a guest</a>
+  </main>
+
+  <script>
+    function getQrValue() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('qr') || 'Unknown';
+    }
+
+    const qr = getQrValue();
+    document.getElementById('qr-value').textContent = qr;
+
+    // Replace with your real destination URLs
+    const staffRedirectUrl = `https://yourportal.example.com/staff-access?qr=${encodeURIComponent(qr)}`;
+    const guestRedirectUrl = `https://yourportal.example.com/guest-access?qr=${encodeURIComponent(qr)}`;
+
+    document.getElementById('staff-button').href = staffRedirectUrl;
+    document.getElementById('guest-button').href = guestRedirectUrl;
+  </script>
+
 </body>
 </html>
