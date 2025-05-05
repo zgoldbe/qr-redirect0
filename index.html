@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>QR Redirect</title>
+  <script>
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const qr = params.get('qr');
+      if (qr) {
+        document.body.innerHTML = `
+          <h2>You scanned QR code: <strong>${qr}</strong></h2>
+          <a href="https://your-link1.com?qr=${qr}" style="padding: 12px 24px; background: #007bff; color: white; border-radius: 5px; display: inline-block; margin: 10px;">Option 1</a>
+          <a href="https://your-link2.com?qr=${qr}" style="padding: 12px 24px; background: #333; color: white; border-radius: 5px; display: inline-block; margin: 10px;">Option 2</a>
+        `;
+      } else {
+        document.body.innerHTML = "<h2>No QR code provided.</h2>";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Loading QR code data...</h2>
+</body>
+</html>
