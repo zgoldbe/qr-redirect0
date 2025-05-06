@@ -17,8 +17,8 @@ const PORTAL_LINKS = (() => {
 
   // Sanitized and validated PORTAL_LINKS
   const validatedLinks = {
-    staff: isValidURL(urls.staff) ? urls.staff : 'https://yourusername.github.io/survey/staff',
-    guest: isValidURL(urls.guest) ? urls.guest : 'https://yourusername.github.io/survey/guest'
+    staff: isValidURL(urls.staff) ? urls.staff : 'https://example.github.io/survey/staff',
+    guest: isValidURL(urls.guest) ? urls.guest : 'https://example.github.io/survey/guest'
   };
 
   return validatedLinks;
