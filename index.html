@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://cotsurvey.chkmkt.com; style-src 'self';">
   <title>City of Toronto QR Redirect</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    City of Toronto - Facility Access
+    <h1>City of Toronto - Facility Access</h1>
   </header>
   <main>
-    <h1>You've scanned QR Code <span id="qr-code">#0000</span></h1>
+    <h2>You've scanned QR Code <span id="qr-code">#0000</span></h2>
     <p>Click one of the buttons below to continue:</p>
 
     <nav aria-label="QR redirect options">
-      <a class="btn btn-staff" id="staff-link" aria-label="City staff portal">I'm a City of Toronto staff member</a>
+      <a class="btn btn-staff" id="staff-link" href="#" aria-label="City staff portal">I'm a City of Toronto staff member</a>
       <p><strong>OR</strong></p>
-      <a class="btn btn-guest" id="guest-link" aria-label="Guest portal access">Continue as a guest</a>
+      <a class="btn btn-guest" id="guest-link" href="#" aria-label="Guest portal access">Continue as a guest</a>
     </nav>
   </main>
 
