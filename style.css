@@ -6,6 +6,14 @@ body {
   color: #000;
 }
 
+header {
+  background-color: #003865;
+  color: white;
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 h1 {
   font-size: 1.75rem;
   color: #004c97;
