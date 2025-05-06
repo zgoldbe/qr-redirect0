@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (qrCode) {
     document.getElementById("qr-code").textContent = `#${qrCode}`;
-    staffLink.href = `${PORTAL_LINKS.staff}?qr=${encodeURIComponent(qrCode)}`;
+    staffLink.href = `${PORTAL_LINKS.staff}&qr=${encodeURIComponent(qrCode)}`;
     guestLink.href = `${PORTAL_LINKS.guest}?qr=${encodeURIComponent(qrCode)}`;
   } else {
     staffLink.href = PORTAL_LINKS.staff;
