@@ -1,16 +1,14 @@
-// Assume PORTAL_LINKS is imported from config.js
-// import { PORTAL_LINKS } from './config.js'; // Uncomment if using ES modules
-// For GitHub Pages, ensure config.js is included via <script src="config.js"></script> before this script
+// Assume PORTAL_LINKS is loaded from config.js via <script src="config.js">
 
-// Simple sanitization function (no external library for simplicity)
+// Simple sanitization function
 const sanitizeInput = (input) => {
-  // Remove HTML tags and dangerous characters, allow alphanumeric, hyphens, and basic punctuation
+  // Remove HTML tags and dangerous characters, allow alphanumeric, hyphens, underscores
   return input.replace(/[<>"'%;()&+]/g, '');
 };
 
-// Validate QR code (allow alphanumeric and hyphens for flexibility, e.g., 'ABC-123')
+// Validate QR code (allow alphanumeric, hyphens, underscores)
 const validateQRCode = (code) => {
-  // Ensure code is non-empty and contains only safe characters (alphanumeric, hyphens, underscores)
+  // Ensure code is non-empty and contains only safe characters
   return /^[a-zA-Z0-9_-]+$/.test(code) ? code : '';
 };
 
@@ -25,15 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const cleanQRCode = validateQRCode(qrCode);
 
   if (cleanQRCode) {
-    // Safely display QR code (use textContent to prevent XSS)
+    // Safely display QR code
     document.getElementById("qr-code").textContent = `#${cleanQRCode}`;
-    
-    // Construct safe URLs with whitelisted base and encoded QR code
+    // Set safe URLs with encoded QR code
     staffLink.href = `${PORTAL_LINKS.staff}&qr=${encodeURIComponent(cleanQRCode)}`;
     guestLink.href = `${PORTAL_LINKS.guest}?qr=${encodeURIComponent(cleanQRCode)}`;
   } else {
-    // Fallback to base URLs without QR code if invalid
+    // Fallback to base URLs
     staffLink.href = PORTAL_LINKS.staff;
     guestLink.href = PORTAL_LINKS.guest;
+    // Display default or error message
+    document.getElementById("qr-code").textContent = '#Invalid';
   }
 });
